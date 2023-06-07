@@ -1,0 +1,25 @@
+开发步骤:
+      1.设置Redis服务器核心配置文件 redis.conf
+
+         第一步：注销掉   bind  127.0.0.1.
+                 注销之后，Redis服务器依赖的主机ip就变成Linux所在机器IP,这样便于远程访问
+         第二步：撤销Redis保护措施
+
+                 protedted model=yes            设置为    protected model =no
+      2.关闭Linux计算机上防火前
+                   systemctl stop firewalld
+
+       3.启动Redis服务器
+
+                   redis-server&
+
+       4.通过Maven将Jedis.jar引入到项目中
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>4.3.1</version>
+            </dependency>
+       5.在测试类，尝试连接远程的Redis服务器
+           Jedis jd = new Jeds("ip地址",端口号)
+
+
